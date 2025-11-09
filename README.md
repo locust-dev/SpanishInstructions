@@ -10,16 +10,25 @@ SpanishInstructions/
 │   └── workflows/
 │       └── firebase-hosting.yml    # GitHub Actions для автодеплоя
 ├── public/                         # Корень для Firebase Hosting
-│   ├── a1/                        # Уроки уровня A1 (22 intro + instruction + test)
-│   │   ├── lesson_intro_1
-│   │   ├── lesson_intro_2
-│   │   ├── lesson_instruction_1
-│   │   ├── lesson_instruction_test_1
-│   │   └── ...
-│   ├── a2/                        # Уроки уровня A2 (12 instruction + intro)
-│   │   ├── lesson_instruction_1
-│   │   ├── lesson_intro_2
-│   │   └── ...
+│   ├── a1/                        # Уроки уровня A1
+│   │   ├── intro/                 # Вводные сообщения
+│   │   │   ├── 1
+│   │   │   ├── 2
+│   │   │   └── ...
+│   │   └── instruction/           # Инструкции
+│   │       ├── 1
+│   │       ├── 2
+│   │       ├── test_1
+│   │       └── ...
+│   ├── a2/                        # Уроки уровня A2
+│   │   ├── intro/                 # Вводные сообщения
+│   │   │   ├── 2
+│   │   │   ├── 3
+│   │   │   └── ...
+│   │   └── instruction/           # Инструкции
+│   │       ├── 1
+│   │       ├── 2
+│   │       └── ...
 │   └── common.txt                 # Общая инструкция для всех уроков
 ├── firebase.json                   # Конфигурация Firebase Hosting
 ├── .firebaserc                     # ID проекта Firebase
@@ -32,18 +41,19 @@ SpanishInstructions/
 
 ### Уроки A1
 ```
-https://spanish-ai-d5645.web.app/a1/lesson_intro_1
-https://spanish-ai-d5645.web.app/a1/lesson_intro_2
-...
-https://spanish-ai-d5645.web.app/a1/lesson_instruction_1
-https://spanish-ai-d5645.web.app/a1/lesson_instruction_test_1
+https://spanish-ai-d5645.web.app/a1/intro/1
+https://spanish-ai-d5645.web.app/a1/intro/2
+https://spanish-ai-d5645.web.app/a1/instruction/1
+https://spanish-ai-d5645.web.app/a1/instruction/2
+https://spanish-ai-d5645.web.app/a1/instruction/test_1
 ```
 
 ### Уроки A2
 ```
-https://spanish-ai-d5645.web.app/a2/lesson_instruction_1
-https://spanish-ai-d5645.web.app/a2/lesson_intro_2
-...
+https://spanish-ai-d5645.web.app/a2/intro/2
+https://spanish-ai-d5645.web.app/a2/intro/3
+https://spanish-ai-d5645.web.app/a2/instruction/1
+https://spanish-ai-d5645.web.app/a2/instruction/2
 ```
 
 ### Общая инструкция
@@ -53,7 +63,11 @@ https://spanish-ai-d5645.web.app/common.txt
 
 ## 📝 Как редактировать инструкции
 
-1. Отредактируйте нужный файл в папке `public/a1/` или `public/a2/`
+1. Отредактируйте нужный файл:
+   - Интро: `public/a1/intro/1` или `public/a2/intro/2`
+   - Инструкции: `public/a1/instruction/1` или `public/a2/instruction/5`
+   - Тестовые: `public/a1/instruction/test_1`
+   - Общая: `public/common.txt`
 2. Закоммитьте изменения в ветку `feature/hosting`
 3. Запушьте изменения: `git push origin feature/hosting`
 4. GitHub Actions автоматически задеплоит изменения на Firebase Hosting
@@ -80,8 +94,11 @@ firebase serve
 
 После запуска инструкции будут доступны по адресу:
 ```
-http://localhost:5000/a1/lesson_intro_1
-http://localhost:5000/a2/lesson_instruction_5
+http://localhost:5000/a1/intro/1
+http://localhost:5000/a1/instruction/5
+http://localhost:5000/a1/instruction/test_1
+http://localhost:5000/a2/intro/2
+http://localhost:5000/a2/instruction/1
 http://localhost:5000/common.txt
 ```
 
@@ -112,15 +129,21 @@ firebase deploy --only hosting
 
 - **Project ID**: `spanish-ai-d5645`
 
-## 📚 Именование файлов
+## 📚 Структура и именование
 
-Все файлы хранятся без расширения (кроме `common.txt`) и следуют паттернам:
+Все файлы хранятся без расширения (кроме `common.txt`) и организованы следующим образом:
 
-- `lesson_intro_N` - Вводные сообщения для урока N
-- `lesson_instruction_N` - Инструкции для урока N
-- `lesson_instruction_test_N` - Инструкции для тестового урока N
+- **Уровень** определяется папкой: `a1/`, `a2/`, и т.д.
+- **Тип** определяется подпапкой:
+  - `intro/` - Вводные сообщения
+  - `instruction/` - Инструкции для уроков
+- **Номер урока** - это имя файла: `1`, `2`, `15`, и т.д.
+- **Тестовые уроки** имеют префикс `test_`: `instruction/test_1`
 
-Уровень языка (A1, A2, B1, B2) определяется папкой, а не именем файла.
+Примеры:
+- `a1/intro/5` - Вводное сообщение для урока 5 уровня A1
+- `a2/instruction/10` - Инструкция для урока 10 уровня A2
+- `a1/instruction/test_2` - Инструкция для тестового урока 2 уровня A1
 
 ## 🔐 Настройка GitHub Actions
 
