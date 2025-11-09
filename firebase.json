@@ -1,0 +1,48 @@
+{
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": "*"
+          },
+          {
+            "key": "Access-Control-Allow-Methods",
+            "value": "GET, HEAD, OPTIONS"
+          },
+          {
+            "key": "Access-Control-Allow-Headers",
+            "value": "Content-Type"
+          }
+        ]
+      },
+      {
+        "source": "**/*.txt",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "text/plain; charset=utf-8"
+          }
+        ]
+      },
+      {
+        "source": "**/*",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "text/plain; charset=utf-8"
+          }
+        ]
+      }
+    ]
+  }
+}
+
