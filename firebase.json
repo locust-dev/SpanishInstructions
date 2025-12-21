@@ -25,7 +25,7 @@
         ]
       },
       {
-        "source": "**/*.txt",
+        "source": "lessons/**",
         "headers": [
           {
             "key": "Content-Type",
@@ -34,7 +34,7 @@
         ]
       },
       {
-        "source": "**/*",
+        "source": "rolePlay/**",
         "headers": [
           {
             "key": "Content-Type",
@@ -45,4 +45,3 @@
     ]
   }
 }
-
